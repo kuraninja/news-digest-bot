@@ -5,41 +5,47 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Your News Digest</title>
 <style>
+  :root {
+    --bg: #f8fafc;
+    --card-bg: #ffffff;
+    --text: #0f172a;
+    --muted: #64748b;
+    --pill-bg: #e2e8f0;
+    --pill-text: #475569;
+    --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  }
   * { box-sizing: border-box; }
   body {
     margin: 0;
-    padding: 0;
-    background: #f8fafc;
-    color: #0f172a;
+    background: var(--bg);
+    color: var(--text);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
   }
   header {
     position: sticky;
     top: 0;
     z-index: 10;
-    background: #ffffff;
-    border-bottom: 1px solid #e2e8f0;
-    padding: 14px 20px;
+    background: var(--card-bg);
+    box-shadow: var(--shadow);
+    padding: 16px 20px;
     text-align: center;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
   }
   header h1 {
     margin: 0 0 4px 0;
     font-size: 1.3rem;
   }
   header .meta {
-    font-size: 0.82rem;
-    color: #64748b;
+    font-size: 0.85rem;
+    color: var(--muted);
   }
   main {
     max-width: 720px;
     margin: 0 auto;
-    padding: 20px 16px 40px 16px;
+    padding: 20px 16px 60px 16px;
   }
-  section {
-    margin-bottom: 32px;
-  }
-  section h2 {
+  section { margin-bottom: 36px; }
+  h2 {
     font-size: 1.15rem;
     padding-bottom: 8px;
     margin-bottom: 16px;
@@ -49,9 +55,9 @@
   h2.technology { border-bottom: 2px solid #7c3aed; }
   h2.sport { border-bottom: 2px solid #ea580c; }
   .card {
-    background: #ffffff;
+    background: var(--card-bg);
     border-radius: 10px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+    box-shadow: var(--shadow);
     padding: 14px 16px;
     margin-bottom: 12px;
   }
@@ -62,56 +68,53 @@
     gap: 10px;
   }
   .card-header a {
-    color: #0f172a;
     font-weight: 700;
+    color: var(--text);
     text-decoration: none;
-    font-size: 0.98rem;
-    line-height: 1.35;
+    font-size: 1rem;
+    flex: 1;
   }
-  .card-header a:hover {
-    text-decoration: underline;
-  }
+  .card-header a:hover { text-decoration: underline; }
   .pill {
     flex-shrink: 0;
+    background: var(--pill-bg);
+    color: var(--pill-text);
     font-size: 0.65rem;
     font-weight: 700;
-    letter-spacing: 0.03em;
     text-transform: uppercase;
-    color: #64748b;
-    background: #f1f5f9;
+    letter-spacing: 0.03em;
+    padding: 3px 8px;
     border-radius: 999px;
-    padding: 3px 9px;
     white-space: nowrap;
   }
   .summary {
     margin-top: 6px;
     font-size: 0.88rem;
-    color: #64748b;
-    line-height: 1.4;
+    color: var(--muted);
   }
   footer {
     text-align: center;
-    font-size: 0.78rem;
-    color: #94a3b8;
-    padding: 20px 16px 30px 16px;
+    font-size: 0.8rem;
+    color: var(--muted);
+    padding: 20px;
   }
-
   @media (prefers-color-scheme: dark) {
-    body { background: #0b1220; color: #e2e8f0; }
-    header { background: #131c2e; border-bottom: 1px solid #1e293b; box-shadow: 0 1px 4px rgba(0,0,0,0.3); }
-    header .meta { color: #94a3b8; }
-    .card { background: #131c2e; box-shadow: 0 1px 3px rgba(0,0,0,0.4); }
-    .card-header a { color: #e2e8f0; }
-    .pill { background: #1e293b; color: #94a3b8; }
-    .summary { color: #94a3b8; }
-    footer { color: #64748b; }
+    :root {
+      --bg: #0b1220;
+      --card-bg: #131c2e;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --pill-bg: #1e293b;
+      --pill-text: #94a3b8;
+      --shadow: 0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
+    }
   }
 </style>
 </head>
 <body>
 <header>
   <h1>📰 Your News Digest</h1>
-  <div class="meta">Last updated: 04 Aug 2026, 18:38 · Next refresh: ~30 min</div>
+  <div class="meta">Last updated: 04 Aug 2026, 20:49 · Next refresh: ~30 min</div>
 </header>
 <main>
 
@@ -120,50 +123,98 @@
 
   <div class="card">
     <div class="card-header">
-      <a href="https://www.bbc.co.uk/news/articles/cn4n03xg981o" target="_blank" rel="noopener noreferrer">Video shows Russian drone chasing Ukrainian street vendor in 'human safari' attack</a>
+      <a href="https://www.bbc.co.uk/news/articles/cx2v91xn1z9o" target="_blank" rel="noopener noreferrer">Spain attacks 'selfish' response of some EU countries to Ceuta migrant crossings</a>
       <span class="pill">BBC</span>
     </div>
-    <div class="summary">Video of drone pursuing terrified civilian described by Ukraine as constituting war crime.</div>
+    <div class="summary">Italy suspends Schengen with Spain as PM Meloni calls Ceuta scenes shocking.</div>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <a href="https://www.bbc.co.uk/news/articles/cpw9v0gnzxwo" target="_blank" rel="noopener noreferrer">Oil prices fall on hopes Strait of Hormuz could reopen</a>
+      <a href="https://www.bbc.co.uk/news/articles/c4g4djgdyk2o" target="_blank" rel="noopener noreferrer">Israeli West Bank settler tells BBC attacks on Palestinians are justified as revenge</a>
       <span class="pill">BBC</span>
     </div>
-    <div class="summary">US officials announce progress in talks to resume shipments through strategic waterway.</div>
+    <div class="summary">Settler violence against Palestinians rises as West Bank settlements and outposts expand.</div>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <a href="https://www.bbc.co.uk/news/articles/c80n3j55g0do" target="_blank" rel="noopener noreferrer">EU commends Spain's 'swift response' to Ceuta migrant crisis</a>
+      <a href="https://www.bbc.co.uk/news/articles/clyljq79kdko" target="_blank" rel="noopener noreferrer">Mountaineer Nirmal Purja killed in Pakistan avalanche, his company says</a>
       <span class="pill">BBC</span>
     </div>
-    <div class="summary">Spain returns majority of 72,000 migrants who illegally entered Ceuta last week.</div>
+    <div class="summary">Renowned mountaineer known for scaling world's 14 highest peaks died in avalanche.</div>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <a href="https://www.bbc.co.uk/news/articles/c151pkww79zo" target="_blank" rel="noopener noreferrer">Ukraine hits more Wildberries sites as strike kills five in Moscow region</a>
+      <a href="https://www.bbc.co.uk/news/articles/ce973yvk7pko" target="_blank" rel="noopener noreferrer">Nine killed in strikes on Kyiv, as Ukraine sinks Russian container ship</a>
       <span class="pill">BBC</span>
     </div>
-    <div class="summary">Ukrainian strikes target Russian retailer facilities across multiple cities, causing casualties.</div>
+    <div class="summary">Moscow escalates deadly ballistic missile attacks on Ukrainian capital; Ukraine destroys Russian vessel.</div>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <a href="https://www.bbc.co.uk/news/articles/c4gkpeppjyqo" target="_blank" rel="noopener noreferrer">More than 170 migrants rescued after boat catches fire in Channel</a>
+      <a href="https://www.bbc.co.uk/news/articles/cx2j9nj88rro" target="_blank" rel="noopener noreferrer">Peru's ex-president leaves jail after 15-year jail term for corruption overturned</a>
       <span class="pill">BBC</span>
     </div>
-    <div class="summary">Migrants attempting UK crossing rescued from burning vessel, set for return to France.</div>
+    <div class="summary">Ollanta Humala released after money laundering conviction overturned alongside his wife's case.</div>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <a href="https://www.bbc.co.uk/news/articles/cx25yn22l97o" target="_blank" rel="noopener noreferrer">What will happen when a SpaceX rocket collides with the Moon?</a>
-      <span class="pill">BBC</span>
+      <a href="https://www.spiegel.de/ausland/usa-mehrheit-der-amerikaner-sieht-laut-umfrage-keine-aufstiegschancen-mehr-a-27047124-eee4-41e7-82d9-992de398fd12" target="_blank" rel="noopener noreferrer">USA: Mehrheit der Amerikaner sieht laut Umfrage keine Aufstiegschancen mehr</a>
+      <span class="pill">Spiegel</span>
     </div>
-    <div class="summary">Astronomers view potential lunar impact as potentially useful scientific accident for research.</div>
+    <div class="summary">Survey reveals many Americans no longer believe in social mobility before congressional elections.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <a href="https://www.spiegel.de/ausland/iran-neue-us-angriffswelle-gegen-iran-a-79c2e640-57f6-4524-b984-c38bafbab9f3" target="_blank" rel="noopener noreferrer">Iran: Neue US-Angriffswelle gegen Iran</a>
+      <span class="pill">Spiegel</span>
+    </div>
+    <div class="summary">US military attacks Iran for sixth consecutive night without apparent regime concessions.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <a href="https://www.spiegel.de/politik/afd-bundesvorstand-fordert-neustart-der-nrw-landesliste-a-1bf30c3f-6941-4feb-b70d-6769d253373f" target="_blank" rel="noopener noreferrer">AfD: Bundesvorstand fordert Neustart der NRW-Landesliste</a>
+      <span class="pill">Spiegel</span>
+    </div>
+    <div class="summary">Party leadership demands North Rhine-Westphalia branch restructure candidate list amid internal power struggle.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <a href="https://www.cnn.com/" target="_blank" rel="noopener noreferrer">New images showing an armed, masked individual outside the Tucson home of Nancy Guthrie</a>
+      <span class="pill">CNN</span>
+    </div>
+    <div class="summary">Surveillance footage of masked armed person at 84-year-old's home offers new investigative leads.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <a href="https://www.cnn.com/" target="_blank" rel="noopener noreferrer">At least 9 killed and dozens injured in Canada shootings</a>
+      <span class="pill">CNN</span>
+    </div>
+    <div class="summary">Multiple fatalities reported following shooting incidents at school and residential location in British Columbia.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <a href="https://www.cnn.com/" target="_blank" rel="noopener noreferrer">FAA closes El Paso airspace for 10 days over security concerns</a>
+      <span class="pill">CNN</span>
+    </div>
+    <div class="summary">Federal aviation authority implements temporary airspace restrictions due to security-related issues at airport.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <a href="https://www.cnn.com/" target="_blank" rel="noopener noreferrer">What the Trump team claimed vs. what the Epstein files show</a>
+      <span class="pill">CNN</span>
+    </div>
+    <div class="summary">Recently released documents reveal discrepancies between Trump administration statements and materials in Epstein case files.</div>
   </div>
 
 </section>
@@ -173,50 +224,50 @@
 
   <div class="card">
     <div class="card-header">
-      <a href="https://www.bbc.co.uk/news/articles/cpw9v0gnzxwo" target="_blank" rel="noopener noreferrer">Oil prices fall on hopes Strait of Hormuz could reopen</a>
+      <a href="https://www.bbc.co.uk/news/articles/clyj8v0rek8o" target="_blank" rel="noopener noreferrer">Shein swings to $99m loss as Trump tariffs hit sales</a>
       <span class="pill">BBC</span>
     </div>
-    <div class="summary">US officials announce progress in talks to permit resumed shipments through the strategic waterway.</div>
+    <div class="summary">Fast fashion giant reports significant loss ahead of Hong Kong stock market debut.</div>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <a href="https://www.bbc.co.uk/news/articles/c4gdkl9zn8wo" target="_blank" rel="noopener noreferrer">Why Trump Media's sale of fast access to market-moving social posts is controversial</a>
+      <a href="https://www.bbc.co.uk/news/articles/cn0njd4e2evo" target="_blank" rel="noopener noreferrer">Would you choose £50,000 over the chance of £1m?</a>
       <span class="pill">BBC</span>
     </div>
-    <div class="summary">Trump Media offers paid Wall Street access to influential Truth Social accounts ahead of public posting.</div>
+    <div class="summary">Most people, particularly women, prefer certainty over chance in financial decisions.</div>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <a href="https://www.bbc.co.uk/news/articles/cg5l11m02j3o" target="_blank" rel="noopener noreferrer">BP's $5.7bn profit highest since 2022 as Iran war pushes up oil price</a>
+      <a href="https://www.bbc.co.uk/news/articles/c9q9w3x9qn2o" target="_blank" rel="noopener noreferrer">Chinese chipmaker shares surge 470% in blockbuster stock market debut</a>
       <span class="pill">BBC</span>
     </div>
-    <div class="summary">Energy firm's elevated profits from higher oil prices draw environmental group accusations of profiteering.</div>
+    <div class="summary">AI boom drives exceptional demand for semiconductor company shares on market launch.</div>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <a href="https://www.bbc.co.uk/news/articles/cjwx9y7dd27o" target="_blank" rel="noopener noreferrer">Campaigners denied appeal over Gatwick expansion</a>
+      <a href="https://www.bbc.co.uk/news/articles/c5y45kdkynpo" target="_blank" rel="noopener noreferrer">Trump paused attacks on Iran to make space for talks, US ambassador says</a>
       <span class="pill">BBC</span>
     </div>
-    <div class="summary">Court rejects legal challenge against two-runway airport operation as "unarguable."</div>
+    <div class="summary">Neither nation launched attacks recently as diplomatic talks aim to end conflict.</div>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <a href="https://www.bbc.co.uk/news/articles/cvg0kk3ek2vo" target="_blank" rel="noopener noreferrer">Apple issues new challenge against UK order for access to private user data</a>
+      <a href="https://www.bbc.co.uk/news/articles/cj3gd312d8yo" target="_blank" rel="noopener noreferrer">Rental searches for pet friendly properties drop after law change</a>
       <span class="pill">BBC</span>
     </div>
-    <div class="summary">Ongoing dispute between Apple and Home Office escalates over data privacy demands.</div>
+    <div class="summary">Renters misconceive pet permission guarantees following recent legislative amendments.</div>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <a href="https://www.bbc.co.uk/news/articles/cgr7qrdx4qwo" target="_blank" rel="noopener noreferrer">Zinc dresses and ice creams - how to survive a heatwave wedding</a>
+      <a href="https://www.bbc.co.uk/news/articles/cdew2dnxlzzo" target="_blank" rel="noopener noreferrer">Water returns to Gatwick Airport after major outage</a>
       <span class="pill">BBC</span>
     </div>
-    <div class="summary">Wedding industry faces unexpected costs managing heat; October bookings surge amid temperature concerns.</div>
+    <div class="summary">Airport experiences service disruptions when water supply temporarily fails.</div>
   </div>
 
 </section>
@@ -226,50 +277,66 @@
 
   <div class="card">
     <div class="card-header">
-      <a href="https://www.bbc.co.uk/news/articles/cvg0kk3ek2vo" target="_blank" rel="noopener noreferrer">Apple issues new challenge against UK order for access to private user data</a>
+      <a href="https://www.bbc.co.uk/news/articles/clyl33q0yl0o" target="_blank" rel="noopener noreferrer">SpaceX share price drops below stock market debut</a>
       <span class="pill">BBC</span>
     </div>
-    <div class="summary">Apple continues disputing Home Office demands for user data access in ongoing privacy battle.</div>
+    <div class="summary">Elon Musk's rocket company experiences volatile share trading since going public a month ago.</div>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <a href="https://www.bbc.co.uk/news/articles/c872r52x7jgo" target="_blank" rel="noopener noreferrer">Tokenomics: Why making AI pay is tricky</a>
+      <a href="https://www.bbc.co.uk/news/articles/c982857nlrlo" target="_blank" rel="noopener noreferrer">Midnight social media curfew proposed for UK teens aged 16 and 17</a>
       <span class="pill">BBC</span>
     </div>
-    <div class="summary">AI service buyers struggle controlling costs while sellers face uncertainty on pricing models.</div>
+    <div class="summary">Government proposes curfew to improve teenagers' lives despite campaigner concerns about effectiveness.</div>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <a href="https://www.bbc.co.uk/news/articles/czjlvrd9e43o" target="_blank" rel="noopener noreferrer">Xbox Series X price hiked by £170 due to rising memory chip costs</a>
+      <a href="https://www.bbc.co.uk/news/articles/cevlwk4nrm7o" target="_blank" rel="noopener noreferrer">10 years of Pokémon Go and the millions still trying to catch 'em all</a>
       <span class="pill">BBC</span>
     </div>
-    <div class="summary">Xbox console prices surge significantly in UK with one model experiencing 43% increase.</div>
+    <div class="summary">Mobile game continues bringing people together after a decade with millions of active players.</div>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <a href="https://www.bbc.co.uk/news/articles/c77g6dm5pr8o" target="_blank" rel="noopener noreferrer">Snapchat joins other popular platforms in fight against 'AI slop'</a>
+      <a href="https://www.bbc.co.uk/news/articles/c2dy6e8klw0o" target="_blank" rel="noopener noreferrer">Meta pulls new AI image feature after days of backlash</a>
       <span class="pill">BBC</span>
     </div>
-    <div class="summary">Multiple platforms combat proliferation of artificially-generated fake content across social networks.</div>
+    <div class="summary">Meta withdrew AI feature enabling Instagram content alteration following swift public criticism.</div>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <a href="https://www.bbc.co.uk/news/articles/cr7k49xjzzeo" target="_blank" rel="noopener noreferrer">AI firms must answer for rogue bots, says boss of hacked company</a>
+      <a href="https://www.bbc.co.uk/news/articles/cy8w379e091o" target="_blank" rel="noopener noreferrer">Apple sues OpenAI, its employees claiming theft of trade secrets</a>
       <span class="pill">BBC</span>
     </div>
-    <div class="summary">Executive warns AI companies must be held accountable for unauthorized bot activities.</div>
+    <div class="summary">Apple alleges OpenAI's hardware business is "rotten to its core" in trade secret lawsuit.</div>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <a href="https://www.bbc.co.uk/news/articles/cp87m46g392o" target="_blank" rel="noopener noreferrer">Amazon and Apple just told us more about their AI plans - here are three things we learned</a>
-      <span class="pill">BBC</span>
+      <a href="https://www.golem.de/news/jugendschutz-australiens-social-media-verbot-zeigt-kaum-wirkung-2606-210157.html" target="_blank" rel="noopener noreferrer">Jugendschutz: Australiens Social-Media-Verbot zeigt kaum Wirkung</a>
+      <span class="pill">Golem</span>
     </div>
-    <div class="summary">Tech giants investing billions in new AI technologies but profitability remains uncertain question.</div>
+    <div class="summary">Australia's social media ban for youth shows minimal impact according to British Medical Journal research.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <a href="https://www.golem.de/news/operation-endgame-behoerden-zerschlagen-mehrere-grosse-malware-netzwerke-2606-210156.html" target="_blank" rel="noopener noreferrer">Operation Endgame: Behörden zerschlagen mehrere große Malware-Netzwerke</a>
+      <span class="pill">Golem</span>
+    </div>
+    <div class="summary">Law enforcement shut down 326 servers linked to malware variants, including 40 from Germany.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <a href="https://www.golem.de/news/anlernen-neuer-ki-systeme-anthropic-wirft-alibaba-unerlaubte-kopier-attacke-vor-2606-210154.html" target="_blank" rel="noopener noreferrer">Anlernen neuer KI-Systeme: Anthropic wirft Alibaba unerlaubte Kopier-Attacke vor</a>
+      <span class="pill">Golem</span>
+    </div>
+    <div class="summary">Anthropic accuses Alibaba of unauthorized copying attempts of AI systems.</div>
   </div>
 
 </section>
@@ -279,50 +346,50 @@
 
   <div class="card">
     <div class="card-header">
-      <a href="https://www.bbc.co.uk/sport/cricket/articles/cgljg1ezyr9o" target="_blank" rel="noopener noreferrer">Drinking culture embedded in cricket - Stokes</a>
+      <a href="https://www.bbc.co.uk/sport/football/articles/c74glwpv99yo" target="_blank" rel="noopener noreferrer">Bellingham slapped Argentina substitute after England exit</a>
       <span class="pill">BBC</span>
     </div>
-    <div class="summary">Ben Stokes says drinking is embedded in cricket, but England team has no alcohol problem.</div>
+    <div class="summary">Jude Bellingham sparks melee slapping Argentina substitute Valentin Barco after England's World Cup semi-final defeat.</div>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <a href="https://www.bbc.co.uk/sport/football/articles/c2k7p4nxdy4o" target="_blank" rel="noopener noreferrer">Fifa private money plan had to be scrapped - Wenger</a>
+      <a href="https://www.bbc.co.uk/sport/football/articles/ce8l1zg37x8o" target="_blank" rel="noopener noreferrer">Romero labels Neville 'stupid' over criticism</a>
       <span class="pill">BBC</span>
     </div>
-    <div class="summary">Arsene Wenger says scrapping private investment in Fifa competitions was absolutely necessary.</div>
+    <div class="summary">Argentina defender Cristian Romero criticizes pundit Gary Neville's assessment of his defensive partnership.</div>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <a href="https://www.bbc.co.uk/sport/football/articles/ckg9k2yvywxo" target="_blank" rel="noopener noreferrer">Arsenal in talks to sign Newcastle's Guimaraes</a>
+      <a href="https://www.bbc.co.uk/sport/football/articles/cre4dvgp717o" target="_blank" rel="noopener noreferrer">Midfielder Gomes close to £38m Villa move</a>
       <span class="pill">BBC</span>
     </div>
-    <div class="summary">Arsenal opens direct talks with Newcastle to sign captain Bruno Guimaraes.</div>
+    <div class="summary">Joao Gomes set to leave relegated Wolves and join Aston Villa in transfer deal.</div>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <a href="https://www.bbc.co.uk/sport/rugby-union/articles/ckg4y9ylr77o" target="_blank" rel="noopener noreferrer">Why £1m-a-season deal will be hard for Pollock and Hearn to find</a>
+      <a href="https://www.bbc.co.uk/sport/football/articles/c1k13mvgyljo" target="_blank" rel="noopener noreferrer">Kane unsure if he will play at next World Cup</a>
       <span class="pill">BBC</span>
     </div>
-    <div class="summary">Salary cap regulations may prevent Eddie Hearn from securing Henry Pollock's million-pound deal.</div>
+    <div class="summary">Harry Kane uncertain about continuing international career until 2030 World Cup following Argentina loss.</div>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <a href="https://www.bbc.co.uk/sport/football/articles/c62e98j4g8vo" target="_blank" rel="noopener noreferrer">'We are cool' - Szoboszlai plays down Liverpool row</a>
+      <a href="https://www.bbc.co.uk/sport/football/articles/czx5xz2k85ko" target="_blank" rel="noopener noreferrer">Scotland goalkeeper Gordon announces retirement</a>
       <span class="pill">BBC</span>
     </div>
-    <div class="summary">Dominik Szoboszlai clears situation with teammates after apparent captain's armband disagreement.</div>
+    <div class="summary">Craig Gordon retires after 25-year playing career as Scotland goalkeeper.</div>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <a href="https://www.bbc.co.uk/sport/mixed-martial-arts/articles/ckgdky8d94eo" target="_blank" rel="noopener noreferrer">UFC loses $30m on Freedom 250 event at White House</a>
+      <a href="https://www.bbc.co.uk/sport/football/articles/ce8l15903k8o" target="_blank" rel="noopener noreferrer">'Passive' and 'crumbled' - did Tuchel's defensive tactics cost England?</a>
       <span class="pill">BBC</span>
     </div>
-    <div class="summary">UFC owners lose thirty million staging Freedom 250 event attended by President Donald Trump.</div>
+    <div class="summary">Analysis questions whether Thomas Tuchel's negative tactics contributed to England's World Cup semi-final defeat.</div>
   </div>
 
 </section>
