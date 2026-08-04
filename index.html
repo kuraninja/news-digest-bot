@@ -69,6 +69,12 @@
     padding: 12px 14px;
     box-shadow: 0 1px 2px rgba(15,23,42,0.06);
   }
+  .item-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+  }
   .item-title {
     font-weight: 600;
     font-size: 0.98rem;
@@ -77,9 +83,21 @@
   }
   @media (prefers-color-scheme: dark) {
     .item-title { color: #e2e8f0 !important; }
+    .source-badge { background: #1e293b !important; color: #94a3b8 !important; }
   }
   .item-title:hover {
     text-decoration: underline;
+  }
+  .source-badge {
+    flex-shrink: 0;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: #64748b;
+    background: #f1f5f9;
+    border-radius: 6px;
+    padding: 2px 6px;
+    white-space: nowrap;
   }
   .item-summary {
     margin: 4px 0 0 0;
@@ -97,7 +115,7 @@
 <body>
 <header>
   <h1>📰 Your News Digest</h1>
-  <div class="meta">Last updated: 04 Aug 2026, 14:25 (Europe/Berlin) &middot; Next refresh: ~14:55</div>
+  <div class="meta">Last updated: 04 Aug 2026, 14:54 (Europe/Berlin) &middot; Next refresh: ~15:24</div>
 </header>
 <main>
   
@@ -108,28 +126,46 @@
           <ul class="item-list">
             
             <li class="item">
-              <a class="item-title" href="https://www.bbc.co.uk/news/articles/cx2v91xn1z9o?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Spain attacks 'selfish' response of some EU countries to Ceuta migrant crossings</a>
+              <div class="item-head">
+                <a class="item-title" href="https://www.bbc.co.uk/news/articles/cx2v91xn1z9o?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Spain attacks 'selfish' response of some EU countries to Ceuta migrant crossings</a>
+                <span class="source-badge">BBC</span>
+              </div>
               <p class="item-summary">Spain criticises other EU nations over their handling of migrant crossings at Ceuta.</p>
             </li>
             <li class="item">
-              <a class="item-title" href="https://www.bbc.co.uk/news/articles/c4g4djgdyk2o?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Israeli West Bank settler tells BBC attacks on Palestinians are justified as revenge</a>
-              <p class="item-summary">A settler defends violence against Palestinians as retaliation in a BBC interview.</p>
-            </li>
-            <li class="item">
-              <a class="item-title" href="https://www.bbc.co.uk/news/articles/clyljq79kdko?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Mountaineer Nirmal Purja killed in Pakistan avalanche, his company says</a>
-              <p class="item-summary">Renowned climber Nirmal Purja has died in an avalanche in Pakistan.</p>
-            </li>
-            <li class="item">
-              <a class="item-title" href="https://www.bbc.co.uk/news/articles/ce973yvk7pko?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Nine killed in strikes on Kyiv, as Ukraine sinks Russian container ship</a>
+              <div class="item-head">
+                <a class="item-title" href="https://www.bbc.co.uk/news/articles/ce973yvk7pko?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Nine killed in strikes on Kyiv, as Ukraine sinks Russian container ship</a>
+                <span class="source-badge">BBC</span>
+              </div>
               <p class="item-summary">Deadly strikes hit Kyiv while Ukraine claims to have sunk a Russian ship.</p>
             </li>
             <li class="item">
-              <a class="item-title" href="https://www.bbc.co.uk/news/articles/cx2j9nj88rro?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Peru's ex-president leaves jail after 15-year jail term for corruption overturned</a>
-              <p class="item-summary">A former Peruvian president is released after his corruption conviction is overturned.</p>
+              <div class="item-head">
+                <a class="item-title" href="https://www.bbc.co.uk/news/articles/c0kmzx8vpv4o?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Hundreds escape Greek wildfire by sea as blazes continue across Europe</a>
+                <span class="source-badge">BBC</span>
+              </div>
+              <p class="item-summary">Wildfires force hundreds to flee by boat as blazes spread across Europe.</p>
             </li>
             <li class="item">
-              <a class="item-title" href="https://www.bbc.co.uk/news/articles/c0kmzx8vpv4o?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Hundreds escape Greek wildfire by sea as blazes continue across Europe</a>
-              <p class="item-summary">Wildfires force hundreds to flee by boat as blazes spread across Europe.</p>
+              <div class="item-head">
+                <a class="item-title" href="https://www.spiegel.de/ausland/usa-mehrheit-der-amerikaner-sieht-laut-umfrage-keine-aufstiegschancen-mehr-a-27047124-eee4-41e7-82d9-992de398fd12#ref=rss" target="_blank" rel="noopener noreferrer">USA: Mehrheit der Amerikaner sieht laut Umfrage keine Aufstiegschancen mehr</a>
+                <span class="source-badge">Spiegel</span>
+              </div>
+              <p class="item-summary">Viele US-Bürger glauben nicht mehr an sozialen Aufstieg vor den Kongresswahlen.</p>
+            </li>
+            <li class="item">
+              <div class="item-head">
+                <a class="item-title" href="https://www.spiegel.de/ausland/iran-neue-us-angriffswelle-gegen-iran-a-79c2e640-57f6-4524-b984-c38bafbab9f3#ref=rss" target="_blank" rel="noopener noreferrer">Iran: Neue US-Angriffswelle gegen Iran</a>
+                <span class="source-badge">Spiegel</span>
+              </div>
+              <p class="item-summary">Sechste Nacht in Folge: US-Militär attackiert Iran, Regime zeigt keine Kompromissbereitschaft.</p>
+            </li>
+            <li class="item">
+              <div class="item-head">
+                <a class="item-title" href="https://www.spiegel.de/ausland/suedafrika-nigeria-holt-1500-buerger-aus-suedafrika-zurueck-wegen-rassistisch-motivierter-gewalt-a-5e76b3f1-8b7d-4469-aeb2-92316286f955#ref=rss" target="_blank" rel="noopener noreferrer">Südafrika: Nigeria holt 1500 Bürger aus Südafrika zurück – wegen rassistisch motivierter Gewalt</a>
+                <span class="source-badge">Spiegel</span>
+              </div>
+              <p class="item-summary">Nigeria evakuiert Bürger nach rassistisch motivierten Attacken in Südafrika.</p>
             </li>
           </ul>
         </section>
@@ -140,23 +176,24 @@
           <ul class="item-list">
             
             <li class="item">
-              <a class="item-title" href="https://www.bbc.co.uk/news/articles/clyj8v0rek8o?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Shein swings to $99m loss as Trump tariffs hit sales</a>
+              <div class="item-head">
+                <a class="item-title" href="https://www.bbc.co.uk/news/articles/clyj8v0rek8o?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Shein swings to $99m loss as Trump tariffs hit sales</a>
+                <span class="source-badge">BBC</span>
+              </div>
               <p class="item-summary">Fast fashion giant reports losses ahead of its Hong Kong stock market debut.</p>
             </li>
             <li class="item">
-              <a class="item-title" href="https://www.bbc.co.uk/news/articles/c9q9w3x9qn2o?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Chinese chipmaker shares surge 470% in blockbuster stock market debut</a>
+              <div class="item-head">
+                <a class="item-title" href="https://www.bbc.co.uk/news/articles/c9q9w3x9qn2o?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Chinese chipmaker shares surge 470% in blockbuster stock market debut</a>
+                <span class="source-badge">BBC</span>
+              </div>
               <p class="item-summary">AI demand drives an unprecedented surge in a chipmaker's market debut.</p>
             </li>
             <li class="item">
-              <a class="item-title" href="https://www.bbc.co.uk/news/articles/c5y45kdkynpo?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Trump paused attacks on Iran to make space for talks, US ambassador says</a>
-              <p class="item-summary">A two-night ceasefire signals diplomatic progress after weeks of escalation.</p>
-            </li>
-            <li class="item">
-              <a class="item-title" href="https://www.bbc.co.uk/news/articles/cj3gd312d8yo?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Rental searches for pet friendly properties drop after law change</a>
-              <p class="item-summary">Renters misunderstand pet permission rules following recent legislative changes.</p>
-            </li>
-            <li class="item">
-              <a class="item-title" href="https://www.bbc.co.uk/news/articles/cdew2dnxlzzo?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Water returns to Gatwick Airport after major outage</a>
+              <div class="item-head">
+                <a class="item-title" href="https://www.bbc.co.uk/news/articles/cdew2dnxlzzo?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Water returns to Gatwick Airport after major outage</a>
+                <span class="source-badge">BBC</span>
+              </div>
               <p class="item-summary">A major airport disruption is resolved after a water supply system failure.</p>
             </li>
           </ul>
@@ -168,24 +205,46 @@
           <ul class="item-list">
             
             <li class="item">
-              <a class="item-title" href="https://www.bbc.co.uk/news/articles/clyl33q0yl0o?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">SpaceX share price drops below stock market debut</a>
+              <div class="item-head">
+                <a class="item-title" href="https://www.bbc.co.uk/news/articles/clyl33q0yl0o?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">SpaceX share price drops below stock market debut</a>
+                <span class="source-badge">BBC</span>
+              </div>
               <p class="item-summary">Elon Musk's rocket company sees volatile trading a month after going public.</p>
             </li>
             <li class="item">
-              <a class="item-title" href="https://www.bbc.co.uk/news/articles/c982857nlrlo?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Midnight social media curfew proposed for UK teens aged 16 and 17</a>
-              <p class="item-summary">The UK government proposes social media restrictions for older teenagers.</p>
-            </li>
-            <li class="item">
-              <a class="item-title" href="https://www.bbc.co.uk/news/articles/c2dy6e8klw0o?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Meta pulls new AI image feature after days of backlash</a>
+              <div class="item-head">
+                <a class="item-title" href="https://www.bbc.co.uk/news/articles/c2dy6e8klw0o?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Meta pulls new AI image feature after days of backlash</a>
+                <span class="source-badge">BBC</span>
+              </div>
               <p class="item-summary">Meta withdraws an Instagram AI editing tool following public criticism.</p>
             </li>
             <li class="item">
-              <a class="item-title" href="https://www.bbc.co.uk/news/articles/cy8w379e091o?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Apple sues OpenAI, its employees claiming theft of trade secrets</a>
+              <div class="item-head">
+                <a class="item-title" href="https://www.bbc.co.uk/news/articles/cy8w379e091o?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Apple sues OpenAI, its employees claiming theft of trade secrets</a>
+                <span class="source-badge">BBC</span>
+              </div>
               <p class="item-summary">Apple alleges OpenAI and former employees stole confidential trade secrets.</p>
             </li>
             <li class="item">
-              <a class="item-title" href="https://www.bbc.co.uk/news/articles/cevlwk4nrm7o?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">10 years of Pokémon Go and the millions still trying to catch 'em all</a>
-              <p class="item-summary">The mobile game still attracts millions a decade after its launch.</p>
+              <div class="item-head">
+                <a class="item-title" href="https://www.golem.de/news/jugendschutz-australiens-social-media-verbot-zeigt-kaum-wirkung-2606-210157.html" target="_blank" rel="noopener noreferrer">Jugendschutz: Australiens Social-Media-Verbot zeigt kaum Wirkung</a>
+                <span class="source-badge">Golem</span>
+              </div>
+              <p class="item-summary">Studie zeigt: Australiens Social-Media-Verbot für Jugendliche zeigt kaum Wirkung.</p>
+            </li>
+            <li class="item">
+              <div class="item-head">
+                <a class="item-title" href="https://www.golem.de/news/operation-endgame-behoerden-zerschlagen-mehrere-grosse-malware-netzwerke-2606-210156.html" target="_blank" rel="noopener noreferrer">Operation Endgame: Behörden zerschlagen mehrere große Malware-Netzwerke</a>
+                <span class="source-badge">Golem</span>
+              </div>
+              <p class="item-summary">Behörden schalten 326 Server ab, die mit verschiedenen Malware-Varianten verknüpft waren.</p>
+            </li>
+            <li class="item">
+              <div class="item-head">
+                <a class="item-title" href="https://www.golem.de/news/anlernen-neuer-ki-systeme-anthropic-wirft-alibaba-unerlaubte-kopier-attacke-vor-2606-210154.html" target="_blank" rel="noopener noreferrer">Anlernen neuer KI-Systeme: Anthropic wirft Alibaba unerlaubte Kopier-Attacke vor</a>
+                <span class="source-badge">Golem</span>
+              </div>
+              <p class="item-summary">Anthropic wirft Alibaba vor, unerlaubt Trainingsmethoden für KI-Modelle kopiert zu haben.</p>
             </li>
           </ul>
         </section>
@@ -196,23 +255,31 @@
           <ul class="item-list">
             
             <li class="item">
-              <a class="item-title" href="https://www.bbc.co.uk/sport/football/articles/c74glwpv99yo?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Bellingham slapped Argentina substitute after England exit</a>
+              <div class="item-head">
+                <a class="item-title" href="https://www.bbc.co.uk/sport/football/articles/c74glwpv99yo?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Bellingham slapped Argentina substitute after England exit</a>
+                <span class="source-badge">BBC</span>
+              </div>
               <p class="item-summary">Jude Bellingham slaps an Argentina player after England's World Cup exit.</p>
             </li>
             <li class="item">
-              <a class="item-title" href="https://www.bbc.co.uk/sport/football/articles/ce8l1zg37x8o?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Romero labels Neville 'stupid' over criticism</a>
-              <p class="item-summary">Cristian Romero hits back at Gary Neville's criticism of his defending.</p>
-            </li>
-            <li class="item">
-              <a class="item-title" href="https://www.bbc.co.uk/sport/football/articles/cre4dvgp717o?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Midfielder Gomes close to £38m Villa move</a>
+              <div class="item-head">
+                <a class="item-title" href="https://www.bbc.co.uk/sport/football/articles/cre4dvgp717o?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Midfielder Gomes close to £38m Villa move</a>
+                <span class="source-badge">BBC</span>
+              </div>
               <p class="item-summary">Joao Gomes edges closer to leaving Wolves for Aston Villa.</p>
             </li>
             <li class="item">
-              <a class="item-title" href="https://www.bbc.co.uk/sport/football/articles/c1k13mvgyljo?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Kane unsure if he will play at next World Cup</a>
+              <div class="item-head">
+                <a class="item-title" href="https://www.bbc.co.uk/sport/football/articles/c1k13mvgyljo?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Kane unsure if he will play at next World Cup</a>
+                <span class="source-badge">BBC</span>
+              </div>
               <p class="item-summary">Harry Kane is uncertain about playing in the 2030 World Cup.</p>
             </li>
             <li class="item">
-              <a class="item-title" href="https://www.bbc.co.uk/sport/football/articles/czx5xz2k85ko?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Scotland goalkeeper Gordon announces retirement</a>
+              <div class="item-head">
+                <a class="item-title" href="https://www.bbc.co.uk/sport/football/articles/czx5xz2k85ko?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Scotland goalkeeper Gordon announces retirement</a>
+                <span class="source-badge">BBC</span>
+              </div>
               <p class="item-summary">Craig Gordon retires after a 25-year professional football career.</p>
             </li>
           </ul>
