@@ -3,336 +3,229 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Your News Digest</title>
+<title>News Digest</title>
 <style>
-  :root {
-    --bg: #f8fafc;
-    --card: #ffffff;
-    --text: #0f172a;
-    --muted: #64748b;
-    --shadow: rgba(15, 23, 42, 0.08);
-    --border: #e2e8f0;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #0b1220;
-      --card: #131c2e;
-      --text: #e2e8f0;
-      --muted: #94a3b8;
-      --shadow: rgba(0, 0, 0, 0.4);
-      --border: #1e293b;
-    }
-  }
+  :root { color-scheme: light dark; }
   * { box-sizing: border-box; }
   body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    background: #f8fafc;
+    color: #0f172a;
+    line-height: 1.45;
+  }
+  @media (prefers-color-scheme: dark) {
+    body { background: #0b1220; color: #e2e8f0; }
+    .card { background: #131c2e !important; }
+    .summary { color: #94a3b8 !important; }
+    header { background: #0f172a !important; border-color: #1e293b !important; }
+    .meta { color: #94a3b8 !important; }
+    .pill { background: #1e293b !important; color: #94a3b8 !important; }
+    .refresh-btn { background: #2563eb !important; }
   }
   header {
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 20px 24px;
     position: sticky;
     top: 0;
     z-index: 10;
-    background: var(--card);
-    border-bottom: 1px solid var(--border);
-    padding: 14px 20px;
-    box-shadow: 0 2px 8px var(--shadow);
   }
-  header h1 {
-    margin: 0 0 4px 0;
-    font-size: 1.2rem;
-  }
-  header .meta {
-    margin: 0;
-    font-size: 0.8rem;
-    color: var(--muted);
-  }
-  main {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 20px 16px 40px;
-  }
-  section {
-    margin-bottom: 32px;
-  }
-  h2 {
-    font-size: 1.15rem;
-    margin: 0 0 16px 0;
-    padding-bottom: 8px;
-  }
-  .card {
-    background: var(--card);
-    border-radius: 12px;
-    padding: 16px;
-    margin-bottom: 12px;
-    box-shadow: 0 1px 4px var(--shadow);
-  }
-  .headline {
-    display: flex;
-    align-items: baseline;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  .headline a {
-    font-weight: 700;
-    color: var(--text);
-    text-decoration: none;
-    font-size: 1rem;
-    line-height: 1.4;
-  }
-  .headline a:hover {
-    text-decoration: underline;
-  }
-  .pill {
-    display: inline-block;
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
+  header h1 { margin: 0 0 8px 0; font-size: 1.4rem; }
+  .meta { color: #64748b; font-size: 0.85rem; margin-bottom: 12px; }
+  .refresh-btn {
+    background: #2563eb;
     color: #fff;
-    background: #64748b;
-    padding: 2px 8px;
-    border-radius: 999px;
-    white-space: nowrap;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    max-width: 720px;
+    display: block;
   }
-  .summary {
-    margin: 8px 0 0 0;
-    font-size: 0.9rem;
-    color: var(--muted);
-    line-height: 1.5;
+  .refresh-btn:disabled { opacity: 0.6; cursor: default; }
+  main { max-width: 720px; margin: 0 auto; padding: 20px 16px 60px; }
+  .category { margin-bottom: 32px; }
+  .category h2 {
+    font-size: 1.05rem;
+    margin: 0 0 12px 0;
+    padding-bottom: 6px;
+    border-bottom: 2px solid;
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
-  footer {
-    text-align: center;
-    font-size: 0.8rem;
-    color: var(--muted);
-    padding: 20px 16px 40px;
+  .item-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .card { background: #ffffff; border-radius: 10px; padding: 12px 14px; box-shadow: 0 1px 2px rgba(15,23,42,0.06); }
+  .card-header { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+  .item-title { font-weight: 600; font-size: 0.98rem; color: #0f172a; text-decoration: none; }
+  @media (prefers-color-scheme: dark) { .item-title { color: #e2e8f0 !important; } }
+  .item-title:hover { text-decoration: underline; }
+  .pill {
+    flex-shrink: 0; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.03em;
+    color: #64748b; background: #f1f5f9; border-radius: 6px; padding: 2px 6px; white-space: nowrap;
   }
-  .world h2 { border-bottom: 2px solid #2563eb; }
-  .business h2 { border-bottom: 2px solid #16a34a; }
-  .technology h2 { border-bottom: 2px solid #7c3aed; }
-  .sport h2 { border-bottom: 2px solid #ea580c; }
+  .summary { margin: 4px 0 0 0; font-size: 0.86rem; color: #64748b; }
+  .status { text-align: center; font-size: 0.85rem; color: #64748b; padding: 24px 0; }
+  footer { text-align: center; font-size: 0.78rem; color: #94a3b8; padding: 16px; }
 </style>
 </head>
 <body>
 <header>
   <h1>📰 Your News Digest</h1>
-  <p class="meta">Last updated: Wednesday, 05 August 2026 · 00:32 CEST · Next refresh: ~30 min</p>
+  <div class="meta" id="meta">Tap the button to fetch the latest headlines.</div>
+  <button class="refresh-btn" id="refreshBtn" onclick="refreshDigest()">🔄 Fetch latest news</button>
 </header>
-<main>
-
-<section class="world">
-  <h2>🌍 World</h2>
-
-  <div class="card">
-    <div class="headline">
-      <a href="https://www.bbc.co.uk/news/articles/cn4n03xg981o" target="_blank" rel="noopener noreferrer">Video shows Russian drone chasing Ukrainian street vendor in 'human safari' attack</a>
-      <span class="pill">BBC</span>
-    </div>
-    <p class="summary">Ukraine alleges a video depicting a civilian pursued by a remotely-controlled drone constitutes a war crime.</p>
-  </div>
-
-  <div class="card">
-    <div class="headline">
-      <a href="https://www.bbc.co.uk/news/articles/cpw9v0gnzxwo" target="_blank" rel="noopener noreferrer">Oil prices fall on hopes Strait of Hormuz could reopen</a>
-      <span class="pill">BBC</span>
-    </div>
-    <p class="summary">US officials announce progress in talks to allow shipments to resume through the strategic waterway.</p>
-  </div>
-
-  <div class="card">
-    <div class="headline">
-      <a href="https://www.bbc.co.uk/news/articles/c80n3j55g0do" target="_blank" rel="noopener noreferrer">EU commends Spain's 'swift response' to Ceuta migrant crisis</a>
-      <span class="pill">BBC</span>
-    </div>
-    <p class="summary">Spain reports returning approximately 70,000 migrants to Morocco following illegal border crossings.</p>
-  </div>
-
-  <div class="card">
-    <div class="headline">
-      <a href="https://www.bbc.co.uk/news/articles/c151pkww79zo" target="_blank" rel="noopener noreferrer">Ukraine hits more Wildberries sites as strike kills five in Moscow region</a>
-      <span class="pill">BBC</span>
-    </div>
-    <p class="summary">Ukrainian forces target Russia's largest online retailer with facilities hit across multiple cities.</p>
-  </div>
-
-  <div class="card">
-    <div class="headline">
-      <a href="https://www.bbc.co.uk/news/articles/cn0n9wpvlwpo" target="_blank" rel="noopener noreferrer">Arrests in Egypt after people allegedly impersonate judges</a>
-      <span class="pill">BBC</span>
-    </div>
-    <p class="summary">Egyptian authorities apprehend suspects accused of staging fraudulent court scenes to defraud victims.</p>
-  </div>
-
-  <div class="card">
-    <div class="headline">
-      <a href="https://www.bbc.co.uk/news/articles/c4gkpeppjyqo" target="_blank" rel="noopener noreferrer">More than 170 migrants rescued after boat catches fire in Channel</a>
-      <span class="pill">BBC</span>
-    </div>
-    <p class="summary">All rescued migrants attempting UK crossing will reportedly be returned to France.</p>
-  </div>
-</section>
-
-<section class="business">
-  <h2>💰 Business</h2>
-
-  <div class="card">
-    <div class="headline">
-      <a href="https://www.bbc.co.uk/news/articles/cpw9v0gnzxwo" target="_blank" rel="noopener noreferrer">Oil prices fall on hopes Strait of Hormuz could reopen</a>
-      <span class="pill">BBC</span>
-    </div>
-    <p class="summary">US officials announce progress in talks to resume shipments through the strait.</p>
-  </div>
-
-  <div class="card">
-    <div class="headline">
-      <a href="https://www.bbc.co.uk/news/articles/c4gdkl9zn8wo" target="_blank" rel="noopener noreferrer">Why Trump Media's sale of fast access to market-moving social posts is controversial</a>
-      <span class="pill">BBC</span>
-    </div>
-    <p class="summary">Trump Media offers paid service giving Wall Street early access to influential Truth Social posts.</p>
-  </div>
-
-  <div class="card">
-    <div class="headline">
-      <a href="https://www.bbc.co.uk/news/articles/cg5l11m02j3o" target="_blank" rel="noopener noreferrer">BP's $5.7bn profit highest since 2022 as Iran war pushes up oil price</a>
-      <span class="pill">BBC</span>
-    </div>
-    <p class="summary">Energy giant's elevated results spark accusations of profiteering amid higher oil prices.</p>
-  </div>
-
-  <div class="card">
-    <div class="headline">
-      <a href="https://www.bbc.co.uk/news/articles/cjwx9y7dd27o" target="_blank" rel="noopener noreferrer">Campaigners denied appeal over Gatwick expansion</a>
-      <span class="pill">BBC</span>
-    </div>
-    <p class="summary">Court rejects bid to stop two-runway airport operation, calling challenge "unarguable".</p>
-  </div>
-
-  <div class="card">
-    <div class="headline">
-      <a href="https://www.bbc.co.uk/news/articles/cvg0kk3ek2vo" target="_blank" rel="noopener noreferrer">Apple issues new challenge against UK order for access to private user data</a>
-      <span class="pill">BBC</span>
-    </div>
-    <p class="summary">Apple continues dispute with Home Office over data privacy and access requirements.</p>
-  </div>
-
-  <div class="card">
-    <div class="headline">
-      <a href="https://www.bbc.co.uk/news/articles/cgr7qrdx4qwo" target="_blank" rel="noopener noreferrer">Zinc dresses and ice creams - how to survive a heatwave wedding</a>
-      <span class="pill">BBC</span>
-    </div>
-    <p class="summary">Wedding industry faces heat-related costs; October bookings surge amid heatwave disruptions.</p>
-  </div>
-</section>
-
-<section class="technology">
-  <h2>💻 Technology</h2>
-
-  <div class="card">
-    <div class="headline">
-      <a href="https://www.bbc.co.uk/news/articles/cgr7nxve05go" target="_blank" rel="noopener noreferrer">'I feel like I dug my own grave': The workers caught in the AI transition</a>
-      <span class="pill">BBC</span>
-    </div>
-    <p class="summary">AI is reshaping the Philippines' outsourcing industry, raising questions over its future.</p>
-  </div>
-
-  <div class="card">
-    <div class="headline">
-      <a href="https://www.bbc.co.uk/news/articles/c0qvpveg20vo" target="_blank" rel="noopener noreferrer">SpaceX's first-ever earnings show higher revenues and huge spending</a>
-      <span class="pill">BBC</span>
-    </div>
-    <p class="summary">Elon Musk's company struggles maintaining investor enthusiasm following stock market debut.</p>
-  </div>
-
-  <div class="card">
-    <div class="headline">
-      <a href="https://www.bbc.co.uk/news/articles/cvg0kk3ek2vo" target="_blank" rel="noopener noreferrer">Apple issues new challenge against UK order for access to private user data</a>
-      <span class="pill">BBC</span>
-    </div>
-    <p class="summary">Latest development in ongoing dispute between Apple and Home Office over data privacy.</p>
-  </div>
-
-  <div class="card">
-    <div class="headline">
-      <a href="https://www.bbc.co.uk/news/articles/c872r52x7jgo" target="_blank" rel="noopener noreferrer">Tokenomics: Why making AI pay is tricky</a>
-      <span class="pill">BBC</span>
-    </div>
-    <p class="summary">AI service buyers struggle controlling costs while sellers uncertain about pricing strategies.</p>
-  </div>
-
-  <div class="card">
-    <div class="headline">
-      <a href="https://www.bbc.co.uk/news/articles/czjlvrd9e43o" target="_blank" rel="noopener noreferrer">Xbox Series X price hiked by £170 due to rising memory chip costs</a>
-      <span class="pill">BBC</span>
-    </div>
-    <p class="summary">Xbox consoles now significantly more expensive in UK, with one model increasing 43%.</p>
-  </div>
-
-  <div class="card">
-    <div class="headline">
-      <a href="https://www.bbc.co.uk/news/articles/c77g6dm5pr8o" target="_blank" rel="noopener noreferrer">Snapchat joins other popular platforms in fight against 'AI slop'</a>
-      <span class="pill">BBC</span>
-    </div>
-    <p class="summary">Snapchat, YouTube, LinkedIn, Substack combat proliferation of fake AI-generated content.</p>
-  </div>
-</section>
-
-<section class="sport">
-  <h2>⚽ Sport</h2>
-
-  <div class="card">
-    <div class="headline">
-      <a href="https://www.bbc.co.uk/sport/football/articles/c2k7p4nxdy4o" target="_blank" rel="noopener noreferrer">Infantino calls executive meeting as criticism mounts</a>
-      <span class="pill">BBC</span>
-    </div>
-    <p class="summary">FIFA chief summons senior leaders after facing fierce criticism over commercial operations sale plan.</p>
-  </div>
-
-  <div class="card">
-    <div class="headline">
-      <a href="https://www.bbc.co.uk/sport/football/articles/ckgdkd5ggg7o" target="_blank" rel="noopener noreferrer">Turkish club Trabzonspor begin talks to sign Salah</a>
-      <span class="pill">BBC</span>
-    </div>
-    <p class="summary">Turkish club Trabzonspor initiates negotiations to sign Egyptian forward Mohamed Salah.</p>
-  </div>
-
-  <div class="card">
-    <div class="headline">
-      <a href="https://www.bbc.co.uk/sport/cricket/articles/c2lqpyv9g7qo" target="_blank" rel="noopener noreferrer">Brilliant Brook leads Sunrisers to record Hundred score</a>
-      <span class="pill">BBC</span>
-    </div>
-    <p class="summary">Sunrisers Leeds set new Hundred record with 241-2 against London Spirit in cricket.</p>
-  </div>
-
-  <div class="card">
-    <div class="headline">
-      <a href="https://www.bbc.co.uk/sport/football/articles/c86n72316g1o" target="_blank" rel="noopener noreferrer">Man Utd set to appoint ex-Hearts boss Olid as women's manager</a>
-      <span class="pill">BBC</span>
-    </div>
-    <p class="summary">Manchester United appoints former Hearts boss Eva Olid as women's manager replacing Marc Skinner.</p>
-  </div>
-
-  <div class="card">
-    <div class="headline">
-      <a href="https://www.bbc.co.uk/sport/cricket/articles/cgljg1ezyr9o" target="_blank" rel="noopener noreferrer">Drinking culture embedded in cricket - Stokes</a>
-      <span class="pill">BBC</span>
-    </div>
-    <p class="summary">Ben Stokes says drinking is embedded in cricket culture but denies England team problem.</p>
-  </div>
-
-  <div class="card">
-    <div class="headline">
-      <a href="https://www.bbc.co.uk/sport/rugby-union/articles/ckg4y9ylr77o" target="_blank" rel="noopener noreferrer">Why £1m-a-season deal will be hard for Pollock and Hearn to find</a>
-      <span class="pill">BBC</span>
-    </div>
-    <p class="summary">Salary cap regulations complicate efforts to secure Henry Pollock's one-million-pound annual contract.</p>
-  </div>
-</section>
-
+<main id="main">
+  <div class="status" id="status"></div>
 </main>
-<footer>
-  Source: BBC News · refreshed automatically every ~30 minutes
-</footer>
+<footer>Sources: BBC News (World, Business, Technology, Sport), Spiegel (World), Golem (Technology)</footer>
+
+<script>
+const CATEGORY_META = {
+  World:      { emoji: "🌍", color: "#2563eb" },
+  Business:   { emoji: "💰", color: "#16a34a" },
+  Technology: { emoji: "💻", color: "#7c3aed" },
+  Sport:      { emoji: "⚽", color: "#ea580c" },
+};
+
+const FEEDS = [
+  { url: "http://feeds.bbci.co.uk/news/world/rss.xml", category: "World", source: "BBC" },
+  { url: "https://www.spiegel.de/schlagzeilen/index.rss", category: "World", source: "Spiegel" },
+  { url: "http://feeds.bbci.co.uk/news/business/rss.xml", category: "Business", source: "BBC" },
+  { url: "http://feeds.bbci.co.uk/news/technology/rss.xml", category: "Technology", source: "BBC" },
+  { url: "https://rss.golem.de/rss.php?feed=RSS2.0", category: "Technology", source: "Golem" },
+  { url: "http://feeds.bbci.co.uk/sport/rss.xml", category: "Sport", source: "BBC" },
+];
+
+const CORS_PROXIES = [
+  (u) => "https://api.allorigins.win/raw?url=" + encodeURIComponent(u),
+  (u) => "https://corsproxy.io/?url=" + encodeURIComponent(u),
+];
+
+const ITEMS_PER_FEED = 5;
+
+function stripHtml(str) {
+  if (!str) return "";
+  const doc = new DOMParser().parseFromString(str, "text/html");
+  return (doc.body.textContent || "").trim();
+}
+
+function truncate(str, max) {
+  if (!str) return "";
+  return str.length > max ? str.slice(0, max - 1).trim() + "…" : str;
+}
+
+async function fetchFeed(feed) {
+  let lastErr;
+  for (const proxy of CORS_PROXIES) {
+    try {
+      const res = await fetch(proxy(feed.url), { cache: "no-store" });
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      const text = await res.text();
+      const xml = new DOMParser().parseFromString(text, "text/xml");
+      if (xml.querySelector("parsererror")) throw new Error("bad XML");
+      const nodes = Array.from(xml.querySelectorAll("item")).slice(0, ITEMS_PER_FEED);
+      return nodes.map((node) => {
+        const title = node.querySelector("title")?.textContent?.trim() || "(untitled)";
+        const link = node.querySelector("link")?.textContent?.trim() || feed.url;
+        const rawDesc = node.querySelector("description")?.textContent || "";
+        const summary = truncate(stripHtml(rawDesc), 140);
+        return { title, link, summary, source: feed.source, category: feed.category };
+      });
+    } catch (err) {
+      lastErr = err;
+    }
+  }
+  console.warn("Feed failed:", feed.url, lastErr);
+  return [];
+}
+
+async function refreshDigest() {
+  const btn = document.getElementById("refreshBtn");
+  const status = document.getElementById("status");
+  const main = document.getElementById("main");
+  const meta = document.getElementById("meta");
+
+  btn.disabled = true;
+  btn.textContent = "⏳ Fetching…";
+  status.textContent = "Loading headlines from all sources…";
+  main.innerHTML = "";
+  main.appendChild(status);
+
+  const results = await Promise.all(FEEDS.map(fetchFeed));
+  const allItems = results.flat();
+
+  const byCategory = {};
+  for (const key of Object.keys(CATEGORY_META)) byCategory[key] = [];
+  for (const item of allItems) {
+    if (byCategory[item.category]) byCategory[item.category].push(item);
+  }
+
+  const failedCount = FEEDS.length - results.filter((r) => r.length > 0).length;
+
+  main.innerHTML = "";
+  let anyItems = false;
+  for (const [catName, meta_] of Object.entries(CATEGORY_META)) {
+    const items = byCategory[catName];
+    if (!items.length) continue;
+    anyItems = true;
+    const section = document.createElement("section");
+    section.className = "category";
+    const h2 = document.createElement("h2");
+    h2.style.borderColor = meta_.color;
+    h2.textContent = meta_.emoji + " " + catName;
+    section.appendChild(h2);
+    const ul = document.createElement("ul");
+    ul.className = "item-list";
+    for (const item of items) {
+      const li = document.createElement("li");
+      li.className = "card";
+      const head = document.createElement("div");
+      head.className = "card-header";
+      const a = document.createElement("a");
+      a.className = "item-title";
+      a.href = item.link;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      a.textContent = item.title;
+      const pill = document.createElement("span");
+      pill.className = "pill";
+      pill.textContent = item.source;
+      head.appendChild(a);
+      head.appendChild(pill);
+      const p = document.createElement("p");
+      p.className = "summary";
+      p.textContent = item.summary;
+      li.appendChild(head);
+      li.appendChild(p);
+      ul.appendChild(li);
+    }
+    section.appendChild(ul);
+    main.appendChild(section);
+  }
+
+  if (!anyItems) {
+    main.innerHTML = '<div class="status">Could not load any feeds right now — check your connection and try again.</div>';
+  }
+
+  const now = new Date();
+  const timeStr = now.toLocaleString("en-GB", {
+    timeZone: "Europe/Berlin", day: "2-digit", month: "short", year: "numeric",
+    hour: "2-digit", minute: "2-digit",
+  });
+  meta.textContent = "Last updated: " + timeStr + " (Europe/Berlin)" +
+    (failedCount > 0 ? " · " + failedCount + " source(s) unavailable this time" : "");
+
+  btn.disabled = false;
+  btn.textContent = "🔄 Fetch latest news";
+}
+
+// Auto-fetch once on first load
+refreshDigest();
+</script>
 </body>
 </html>
