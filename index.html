@@ -93,20 +93,22 @@ const CATEGORY_META = {
 };
 
 const FEEDS = [
-  { url: "http://feeds.bbci.co.uk/news/world/rss.xml", category: "World", source: "BBC" },
+  { url: "https://feeds.bbci.co.uk/news/world/rss.xml", category: "World", source: "BBC" },
   { url: "https://www.spiegel.de/schlagzeilen/index.rss", category: "World", source: "Spiegel" },
-  { url: "http://feeds.bbci.co.uk/news/business/rss.xml", category: "Business", source: "BBC" },
-  { url: "http://feeds.bbci.co.uk/news/technology/rss.xml", category: "Technology", source: "BBC" },
+  { url: "https://feeds.bbci.co.uk/news/business/rss.xml", category: "Business", source: "BBC" },
+  { url: "https://feeds.bbci.co.uk/news/technology/rss.xml", category: "Technology", source: "BBC" },
   { url: "https://rss.golem.de/rss.php?feed=RSS2.0", category: "Technology", source: "Golem" },
-  { url: "http://feeds.bbci.co.uk/sport/rss.xml", category: "Sport", source: "BBC" },
+  { url: "https://feeds.bbci.co.uk/sport/rss.xml", category: "Sport", source: "BBC" },
 ];
 
 const CORS_PROXIES = [
   (u) => "https://api.allorigins.win/raw?url=" + encodeURIComponent(u),
   (u) => "https://corsproxy.io/?url=" + encodeURIComponent(u),
+  (u) => "https://api.codetabs.com/v1/proxy?quest=" + encodeURIComponent(u),
 ];
 
 const ITEMS_PER_FEED = 5;
+const FETCH_TIMEOUT_MS = 6000;
 
 function stripHtml(str) {
   if (!str) return "";
@@ -119,11 +121,21 @@ function truncate(str, max) {
   return str.length > max ? str.slice(0, max - 1).trim() + "…" : str;
 }
 
+async function fetchWithTimeout(url, ms) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), ms);
+  try {
+    return await fetch(url, { cache: "no-store", signal: controller.signal });
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 async function fetchFeed(feed) {
   let lastErr;
   for (const proxy of CORS_PROXIES) {
     try {
-      const res = await fetch(proxy(feed.url), { cache: "no-store" });
+      const res = await fetchWithTimeout(proxy(feed.url), FETCH_TIMEOUT_MS);
       if (!res.ok) throw new Error("HTTP " + res.status);
       const text = await res.text();
       const xml = new DOMParser().parseFromString(text, "text/xml");
