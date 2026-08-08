@@ -121,6 +121,18 @@ function truncate(str, max) {
   return str.length > max ? str.slice(0, max - 1).trim() + "…" : str;
 }
 
+// Keep up to MAX_SENTENCES sentences from the feed's description, as a
+// fuller summary (rather than cutting mid-sentence at a fixed character
+// count). Still hard-capped on length as a safety net for run-on feeds.
+function capSentences(str, maxSentences, maxChars) {
+  if (!str) return "";
+  const clean = str.replace(/\s+/g, " ").trim();
+  const sentences = clean.match(/[^.!?]+[.!?]+(?=\s|$)|[^.!?]+$/g) || [clean];
+  let result = sentences.slice(0, maxSentences).join(" ").trim();
+  if (result.length > maxChars) result = result.slice(0, maxChars - 1).trim() + "…";
+  return result;
+}
+
 async function fetchWithTimeout(url, ms) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), ms);
@@ -145,7 +157,7 @@ async function fetchFeed(feed) {
         const title = node.querySelector("title")?.textContent?.trim() || "(untitled)";
         const link = node.querySelector("link")?.textContent?.trim() || feed.url;
         const rawDesc = node.querySelector("description")?.textContent || "";
-        const summary = truncate(stripHtml(rawDesc), 140);
+        const summary = capSentences(stripHtml(rawDesc), 6, 900);
         return { title, link, summary, source: feed.source, category: feed.category };
       });
     } catch (err) {
